@@ -37,10 +37,10 @@ $bunchy_template_data = bunchy_get_template_part_data();
 							<?php $bunchy_post_number = 0; ?>
 							<?php while ( have_posts() ) : the_post();
 								$bunchy_post_number ++; ?>
-								<?php echo "TESTqwerty"; do_action( 'bunchy_archive_loop_before_post', 'classic', $bunchy_post_number ); ?>
+								<?php do_action( 'bunchy_archive_loop_before_post', 'classic', $bunchy_post_number ); ?>
 
 								<li class="g1-collection-item">
-									<?php echo "TESTqwerty"; get_template_part( 'template-parts/content-classic', get_post_format() ); ?>
+									<?php get_template_part( 'template-parts/content-classic', get_post_format() ); ?>
 								</li>
 
 								<?php do_action( 'bunchy_archive_loop_after_post', 'classic', $bunchy_post_number ); ?>

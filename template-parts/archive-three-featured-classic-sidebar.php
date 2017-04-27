@@ -18,10 +18,9 @@ global $wp_query;
 $temp_query = $wp_query;
 
 $bunchy_template_data = bunchy_get_template_part_data();
+//$bunchy_elements   = $bunchy_template_data['elements'];
 
 ?>
-
-
 
 <?php
 if ( bunchy_show_archive_featured_entries() ) :
@@ -34,7 +33,7 @@ endif;
 			<div id="primary" class="g1-column">
 				<!-- DO STUFF -->
 				<div class="bs-collection-01">
-					
+					<?php get_template_part( 'template-parts/content', 'bs-collection-01' ); ?>
 				</div>
 				<div class="bs-collection-02">
 					
@@ -45,7 +44,9 @@ endif;
 					<?php while ( have_posts() ) : the_post();
 						$bunchy_post_number ++; ?>
 						<!-- Add final template -->
+						<?php do_action( 'bunchy_archive_loop_before_post', 'classic', $bunchy_post_number ); ?>
 						<?php get_template_part( 'template-parts/content', 'bs-collection-end' ); ?>
+						<?php do_action( 'bunchy_archive_loop_after_post', 'classic', $bunchy_post_number ); ?>
 					<?php endwhile; ?>
 				</div>
 				<div class="bs-collection-pagination">
