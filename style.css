@@ -1,0 +1,306 @@
+/*
+Theme Name:     Bunchy Child Theme
+Theme URI:      http://bunchy.bringthepixel.com
+Description:    Got questions? Visit our <a href="http://bringthepixel.com/support/">support forum</a>.
+Author:         bring the pixel
+Author URI:     http://www.bringthepixel.com/
+Template:       bunchy
+Version:        1.0
+Tags:           fluid-layout, custom-colors, custom-menu, featured-images, post-formats, theme-options, threaded-comments, translation-ready
+*/
+
+/* Place all your CSS modifications below */
+/*
+Theme Name: bunchy-child-theme
+Description: A child theme of bunchy
+Template: bunchy
+*/
+
+/*******************************************************************************
+ * RESPONSIVE GRID *************************************************************
+ ******************************************************************************/
+/* 
+ * Responsive Rows
+ */
+.respon_row {
+	clear: both;
+	overflow: hidden;
+	/* height: 100%; */
+}
+/* 
+ * Responsive Columns
+*/
+.respon_col {
+	display: block;
+	float: left;
+	margin: 0% 0% 1% 2%;
+}
+.respon_col-center {
+	display: block;
+
+	float: none;
+	margin: 0% 0% 1% 2%;
+}
+.respon_col-right {
+	display: block;
+	/* display: table;*/
+	/* width: 48%; */
+	float: right;
+	margin: 0% 0% 1% 2%;
+}
+
+.respon_col:first-child {
+	margin-left: 0;
+}
+.respon_col-center:first-child {
+	margin-left: 0;
+}
+/*
+@media only screen and (max-width: 480px){
+	.respon_col, .respon_col-center, .respon_col-right {
+		margin: 0% 0% 1% 0%;
+	}
+}
+*/
+/*
+ * Responsive Groups
+ */
+.respon_group:before,
+.respon_group:after {
+    content:"";
+    display: table;
+    clear: both;
+}
+.respon_group {
+	/* For IE 6/7 */
+	zoom:1;
+}
+
+/*
+ * GRID OF TWO
+ */
+
+.span_2_of_2 { width: 100%; }
+.span_1_of_2 { width: 49%; }
+
+/* @media only screen and (max-width: 480px){
+	.span_1_of_2, .span_2_of_2 {
+		width: 100%;
+	}
+} */
+
+@media only screen and (max-width: 768px) {
+    .respon_col {
+        margin:0% 1% 1% 0%;
+    }
+
+    .span_1_of_2,.span_2_of_2 {
+        width: 100%;
+    }
+}
+
+/*
+ * GRID OF THREE
+ */
+.span_3_of_3 { width: 100%; }
+.span_2_of_3 { width: 66%; }
+.span_1_of_3 { width: 32%; }
+
+/*  GO FULL WIDTH BELOW 700 PIXELS */
+@media only screen and (max-width: 700px) {
+	.respon_col {  margin: 1% 1% 1% 0%; }
+	.span_3_of_3, .span_2_of_3, .span_1_of_3 { width: 100%; }
+}
+
+/* 
+ * GRID OF FIVE 
+ */
+.span_5_of_5 { width: 100%; }
+.span_4_of_5 { width: 79.9%; }
+.span_3_of_5 { width: 59%; }
+.span_2_of_5 { width: 39%; }
+.span_1_of_5 { width: 19.6%; }
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 600px) {
+	.respon_col {  margin: 0% 1% 1% 0%; }
+	.span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+}
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
+
+/*
+ * SINGLE ITEM TEMPLATE
+ */
+
+.snax-item-media-link {
+    border-width: 0px;
+}
+
+.snax-item-media-link > img.wp-post-image {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e6e6e6;
+    height: 230px;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.snax-mod-voting-score-last {
+    float: left;
+    width: 50%;
+    background-color: rgba(192,192,192,0.2);
+    padding: 6px 0px;
+}
+
+.snax-mod-voting-score-current {
+    float: left;
+    width: 50%;
+    background-color: rgba(0,192,0,0.2);
+    padding: 6px 0px;
+}
+
+@media only screen and (max-width: 1024px) {
+    /*.entry-tpl-index {
+        padding-left: 120px; 
+    }
+    .entry-tpl-index-stickies:after {
+        display: table;
+        clear: both;
+        content: ""; 
+    }
+    .entry-tpl-index-stickies .entry-box {
+        width: 100%;
+        float: right; 
+    }
+    .entry-tpl-index-stickies .entry-actions {
+        position: -webkit-sticky;
+        position: sticky;
+        float: left;
+        width: 110px;
+        border-width: 0;
+        margin-left: -120px;
+        top: 10px;
+    }*/
+    .entry-actions {
+        width: 35%;
+        border-width: 0 0 0 !important; 
+        /* position: -webkit-sticky; */
+        /* position: sticky; */
+        /* float: left; */
+        /* width: 110px; */
+        /* border-width: 0; */
+        /* margin-left: -120px; */
+        /* top: 10px; */
+    }
+    .snax-voting-score {
+        width: 69%;
+        margin: 0 0 0 9px !important;
+        
+    }
+    
+}
+
+
+
+
+
+.snax-mod-item-rank {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    width: 32%;
+    height: 32%;
+    background: rgba(136,136,136,0.6);
+    font-size: 12px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(92, 92, 92, 0.6);
+}
+
+/*.snax-mod-item-rank-position {
+    float: left;
+    height: 100%;
+    width: 49%;
+    
+}*/
+
+.snax-mod-item-rank-position-current {
+    text-align: center;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50%;
+    width: 50%;
+    
+}
+
+.snax-mod-item-rank-position-current > div {
+    
+}
+
+.snax-mod-item-rank-status {
+    float: left;
+    height: 50%;
+    width: 50%;
+    align-content: center;
+    vertical-align: middle;
+    background: red;
+}
+
+.snax-mod-item-rank-position-last {
+    position: relative;
+    float: left;
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    background: rgba(96, 96, 96, 0.6);
+}
+.snax-mod-item-rank-position-last > div {
+    position: relative;
+    top: 27%;
+}
+
+
+
+.g1-beta .g1-beta-1st .snax-item-title {
+    margin-bottom: 2px;
+}
+.g1-beta {
+    margin-bottom: 2px !important;
+}
+.snax-item-date {
+    float: left;
+}
+.snax-mod-actions {
+    float: left;
+    margin-left: 9px;
+    margin-bottom: 0px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+}
+.snax-item-media-desc {
+    clear: left;
+    max-height: 108px;
+}
+.snax-item-share {
+    min-height: 46px;
+}
+.snax-item-share-toggle {
+    float: left;
+}
+.snax-item-share-content {
+    width: 50% !important;
+    margin-left: 0px !important;
+}
+.snax-share {
+    float: left !important;
+}
+.snax-action-links {
+    width: 122px !important;
+}
+
