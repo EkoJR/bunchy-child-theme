@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <article <?php post_class( 'snax-item entry-tpl-index entry-tpl-index-stickies' ); ?>>
 	<div class="snax-item-actions entry-actions">
-		<?php snax_mod_render_voting_box(); ?>
+		<?php snax_mod_render_voting_box_weeks(); ?>
 		<?php //snax_render_item_share(); ?>
 		<?php //snax_render_item_action_links(); ?>
 	</div>

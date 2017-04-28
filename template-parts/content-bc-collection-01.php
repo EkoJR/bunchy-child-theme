@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $show_snax_bar = false;
 $show_snax_tab = true;
 $show_subtitle = true;
+$bc_01_total = 2;
 
 
 
@@ -53,57 +54,20 @@ array (size=4)
           'views' => boolean true
           'comments_link' => boolean true
  */
-//echo var_dump( $bunchy_elements );
-/*
-array (size=10)
-  'featured_media' => boolean true
-  'categories'     => boolean true
-  'title'          => boolean true
-  'summary'        => boolean true
-  'author'         => boolean true
-  'avatar'         => boolean true
-  'date'           => boolean true
-  'shares'         => boolean true
-  'views'          => boolean true
-  'comments_link'  => boolean true
- */
 
 ?>
 <?php
-// TODO - Add query.
+//snax_is_post_open_list( $post_id = 0 )
+//snax_is_post_ranked_list( $post_id = 0 )
 
-// Prevent direct script access.
+global $wp_query;
+$temp_query = $wp_query;
+$snax_post_types = snax_get_post_supported_post_types();
 
 
-//$bunchy_template_data                      = bunchy_get_template_part_data();
-//$bunchy_featured_entries                   = $bunchy_template_data['featured_entries'];
-//$bunchy_featured_entries['posts_per_page'] = 1;
-
-//$bunchy_featured_ids = bunchy_get_featured_posts_ids( $bunchy_featured_entries );
-
-//$bunchy_query_args = array();
-
-//if ( ! empty( $bunchy_featured_ids ) ) {
-//	$bunchy_query_args['post__in']            = $bunchy_featured_ids;
-//	$bunchy_query_args['orderby']             = 'post__in';
-//	$bunchy_query_args['ignore_sticky_posts'] = true;
-//}
-
-/*
-$bunchy_title = wp_kses_post( __( 'Latest <span>stories</span>', 'bunchy' ) );
-
-switch ( $bunchy_featured_entries['type'] ) {
-	case 'most_shared':
-		$bunchy_title = wp_kses_post( __( 'Most <span>shared</span>', 'bunchy' ) );
-		break;
-
-	case 'most_viewed':
-		$bunchy_title = wp_kses_post( __( 'Most <span>viewed</span>', 'bunchy' ) );
-		break;
-}
- */
-$bs_query_args = array(
-	
+$bc_query_args = array(
+	//'post_type' => $snax_post_types,
+	//'category_name' => $wp_query->query['category_name'],
 	/*'tax_query' => array(
 		array(
 			'taxonomy' => 'category',
@@ -112,26 +76,46 @@ $bs_query_args = array(
 			'include_children' => true,
 		),
 	),*/
-	
-	'posts_per_page' => 1,
-	'posts_per_archive_page' => 3,
+	'meta_query'     => array(
+		array(
+			
+			//'key' => '_snax_post_submission',
+			//'key' => '_snax_post_submission_start_date',
+			//'key' => '_snax_post_submission_end_date',
+			'key' => '_snax_post_voting',
+			//'key' => '_snax_post_voting_start_date',
+			//'key' => '_snax_post_voting_end_date',
+			//'key' => '_snax_post_items_per_page',
+
+			//'key'     => '_snax_format',
+			'compare' => 'EXISTS',
+		),
+	),
+	'posts_per_page' => $bc_01_total,
+	//'posts_per_archive_page' => $bc_01_total,
 	'ignore_sticky_posts' => true,
-	'order' => 'ASC',
+	'order' => 'DESC',
 	'order_by' => 'date',
 	
 );
-$bs_query = new WP_Query( $bs_query_args );
+
+$bc_query_args = wp_parse_args( $bc_query_args, $wp_query->query );
+
+$bc_query = new WP_Query( $bc_query_args );
+
 ?>
 
-<?php if ( $bs_query->have_posts() ) : ?>
-	<?php while ( $bs_query->have_posts() ) : $bs_query->the_post(); ?>
-		<article id="post-<?php $bs_query->the_ID(); ?>" <?php post_class( 'entry-tpl-classic' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
-			<div class="respon_row respon_group">
+<?php if ( $bc_query->have_posts() ) : ?>
+	<?php while ( $bc_query->have_posts() ) : $bc_query->the_post(); ?>
+		<article id="post-<?php $bc_query->post->ID; ?>" <?php post_class( 'entry-tpl-classic' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
+			<div class="respon_row respon_group bc-01">
 				<div class="respon_col span_2_of_5">
-					<div class="bs-01-thumb-header">
-						<header class="entry-header bs-01-header">
+					<div class="bc-01-thumb-header">
+						<header class="entry-header bc-01-header">
 							<?php if ( $bunchy_elements['title'] ) : ?>
-								<?php /* TODO Add length limit */the_title( '<h1 class="g1-mega g1-mega-1st entry-title" itemprop="headline">', '</h1>' ); ?>
+								<a href="<?php the_permalink() ?>">
+									<?php /* TODO Add length limit */ the_title( '<h1 class="entry-title bc-01-title" itemprop="headline">', '</h1>' ); ?>
+								</a>
 							<?php endif; ?>
 							
 							<?php
@@ -140,35 +124,40 @@ $bs_query = new WP_Query( $bs_query_args );
 							endif;
 							?>
 							
-							<?php
-							if ( $bunchy_elements['author'] ) :
-								bunchy_render_entry_author( array(
-									'avatar'      => $bunchy_elements['avatar'],
-									'avatar_size' => 18,
-									'use_microdata' => true,
-								) );
-							endif;
-							?>
-							
-							<?php
-							if ( $bunchy_elements['date'] ) :
-								bunchy_render_entry_date( array(
-									'use_microdata' => true,
-								) );
-							endif;
-							?>
+							<?php if ( $bunchy_elements['author'] || $bunchy_elements['date'] ) : ?>
+								<div class="bc-01-header-details">
+									<?php
+									if ( $bunchy_elements['author'] ) :
+										bunchy_render_entry_author( array(
+											'avatar'      => $bunchy_elements['avatar'],
+											'avatar_size' => 18,
+											'use_microdata' => true,
+										) );
+									endif;
+									?>
+
+									<?php
+									if ( $bunchy_elements['date'] ) :
+										bunchy_render_entry_date( array(
+											'use_microdata' => true,
+										) );
+									endif;
+									?>
+								</div>
+							<?php endif; ?>		
 						</header>
 						<?php if ( $show_snax_tab && bunchy_can_use_plugin( 'snax/snax.php' ) ) : ?>
 							<?php if ( snax_is_format( 'list' ) ) : ?>
-								<a class="entry-badge entry-badge-open-list" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Open list', 'bunchy' ); ?></a>
+								<a class="entry-badge entry-badge-open-list bc-01-badge" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Open list', 'bunchy' ); ?></a>
 							<?php endif; ?>
 						<?php endif; ?>
-						<div class="bc-01-featured-img">
+						<div class="bc-01-thumb">
 							<?php 
 							if ( $bunchy_elements['featured_media'] ) :
 								bunchy_render_entry_featured_media( array(
 									'size' => 'medium',
-									'class' => 'bc-collection-01',
+									'class' => 'bc-01-thumb-figure',
+									'use_sizer'         => false,
 									'use_microdata' => true,
 									'apply_link' => false,
 									
@@ -237,9 +226,20 @@ $bs_query = new WP_Query( $bs_query_args );
 					</div>
 				</div>
 				<div class="respon_col span_3_of_5">
-					
+					<?php
+					global $wp_query;
+					$temp_query = $wp_query;
+					?>
 					<!-- VOTE GRID -->
-					
+					<div class="respon_row respon_group bc-01-items">
+						<div class="respon_col span_1_of_2 bc-01-items-left">
+							<?php echo bc_render_snax_items( $bc_query->post->ID, $args = array() ); ?>
+						</div>
+						<div class="respon_col span_1_of_2 bc-01-items-right">
+							<?php echo bc_render_snax_items( $bc_query->post->ID, $args = array( 'offset' => 5 ) ); ?>
+						</div>
+					</div>
+					<?php $wp_query = $temp_query; ?>
 				</div>
 			</div>
 			<meta itemprop="mainEntityOfPage" content="<?php echo esc_url( get_permalink() ); ?>"/>
@@ -256,6 +256,7 @@ $bs_query = new WP_Query( $bs_query_args );
 		</article>
 	<?php endwhile; ?>
 <?php endif; 
+$wp_query = $temp_query;
 bunchy_reset_template_part_data();
 wp_reset_postdata();
 ?>

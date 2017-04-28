@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php 
-global $wp_query;
-$temp_query = $wp_query;
+//global $wp_query;
+//$temp_query = $wp_query;
 
 $bunchy_template_data = bunchy_get_template_part_data();
 //$bunchy_elements   = $bunchy_template_data['elements'];
@@ -33,7 +33,7 @@ endif;
 			<div id="primary" class="g1-column">
 				<!-- DO STUFF -->
 				<div class="bs-collection-01">
-					<?php get_template_part( 'template-parts/content', 'bs-collection-01' ); ?>
+					<?php get_template_part( 'template-parts/content', 'bc-collection-01' ); ?>
 				</div>
 				<div class="bs-collection-02">
 					
