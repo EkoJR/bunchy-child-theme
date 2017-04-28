@@ -30,6 +30,7 @@ function bc_render_snax_items( $post_id, $format = array() ) {
 	);
 	$format = wp_parse_args( $format, $default_format );
 
+	
 	$args_query = array(
 		'post_type'      => snax_get_item_post_type(),
 		'post_parent' => $post_id,
@@ -54,7 +55,7 @@ function bc_render_snax_items( $post_id, $format = array() ) {
 			?>
 			<div class="bc-01-item">
 				<div class="bc-01-item-vote-box">
-					<?php snax_mod_render_voting_box( $items_query->post->ID ) ?>
+					<?php snax_mod_render_voting_box( $items_query->post->ID , $post_id ) ?>
 				</div>
 				<div class="bc-01-item-thumbnail">
 					<?php the_post_thumbnail( 'thumbnail' ) ?>

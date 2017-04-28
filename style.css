@@ -278,6 +278,10 @@ Template: bunchy
  */
 
 .bc-01 {
+    position: relative;
+}
+
+.bc-01-post {
     height: 520px;
 }
 

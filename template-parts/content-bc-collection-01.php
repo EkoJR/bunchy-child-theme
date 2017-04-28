@@ -102,13 +102,14 @@ $bc_query_args = array(
 $bc_query_args = wp_parse_args( $bc_query_args, $wp_query->query );
 
 $bc_query = new WP_Query( $bc_query_args );
+$bc_post_id = $bc_query->post->ID;
 
 ?>
 
 <?php if ( $bc_query->have_posts() ) : ?>
 	<?php while ( $bc_query->have_posts() ) : $bc_query->the_post(); ?>
-		<article id="post-<?php $bc_query->post->ID; ?>" <?php post_class( 'entry-tpl-classic' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
-			<div class="respon_row respon_group bc-01">
+		<article id="post-<?php echo $bc_query->post->ID; ?>" <?php post_class( 'entry-tpl-classic bc-01-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
+			<div class="respon_row respon_group snax">
 				<div class="respon_col span_2_of_5">
 					<div class="bc-01-thumb-header">
 						<header class="entry-header bc-01-header">
@@ -176,7 +177,7 @@ $bc_query = new WP_Query( $bc_query_args );
 
 					
 					<?php if ( $show_snax_bar ) : // <hr> ?>
-						<div class="bs-01-test0snax-bar">
+						<div class="bs-01-test snax-bar">
 							<?php get_template_part( 'template-parts/snax-bar-item' ); ?>
 						</div>
 					<?php endif; ?>
