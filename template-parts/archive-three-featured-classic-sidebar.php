@@ -36,7 +36,7 @@ endif;
 					<?php get_template_part( 'template-parts/content', 'bc-collection-01' ); ?>
 				</div>
 				<div class="bc-02">
-					
+					<?php get_template_part( 'template-parts/content', 'bc-collection-02' ); ?>
 				</div>
 				
 				<div class="bc-collection-end">
@@ -45,7 +45,7 @@ endif;
 						$bunchy_post_number ++; ?>
 						<!-- Add final template -->
 						<?php do_action( 'bunchy_archive_loop_before_post', 'classic', $bunchy_post_number ); ?>
-						<?php get_template_part( 'template-parts/content', 'bs-collection-end' ); ?>
+						<?php get_template_part( 'template-parts/content', 'bc-collection-end' ); ?>
 						<?php do_action( 'bunchy_archive_loop_after_post', 'classic', $bunchy_post_number ); ?>
 					<?php endwhile; ?>
 				</div>

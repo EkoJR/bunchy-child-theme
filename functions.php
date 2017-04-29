@@ -22,7 +22,7 @@ function add_my_footer_textLink() {
 }
 add_action( 'wp_footer', 'add_my_footer_textLink' );
 
-function bc_render_snax_items( $post_id, $format = array() ) {
+function bc_01_render_snax_items( $post_id, $format = array() ) {
 	$default_format = array(
 		//'before' => '',
 		//'after' => '',
@@ -53,11 +53,11 @@ function bc_render_snax_items( $post_id, $format = array() ) {
 		while ( $items_query->have_posts() ) {
 			$items_query->the_post();
 			?>
-			<div class="bc-01-item">
-				<div class="bc-01-item-vote-box">
+			<div class="snax-item bc-01-item">
+				<div class="snax-item-actions bc-01-item-vote-box">
 					<?php snax_mod_render_voting_box( $items_query->post->ID , $post_id ) ?>
 				</div>
-				<div class="bc-01-item-thumbnail">
+				<div class="bc-01-item-thumb">
 					<?php the_post_thumbnail( 'thumbnail' ) ?>
 				</div>
 				<div class="bc-01-item-container">
@@ -65,7 +65,7 @@ function bc_render_snax_items( $post_id, $format = array() ) {
 						<h4 class="g1-delta g1-delta-1st snax-item-title bc-01-item-title">
 							<a href="<?php echo esc_url( the_permalink() ); ?>" id="snax-itemli-<?php echo (int) $items_query->post->ID; ?>" rel="bookmark">
 								<?php
-								//echo snax_capture_item_position( array('prefix' => '', 'suffix' => '' ) );
+								echo snax_capture_item_position( array('prefix' => '', 'suffix' => '' ) );
 								the_title('', '');
 								//snax_render_item_title();
 								?>
@@ -87,4 +87,8 @@ function bc_render_snax_items( $post_id, $format = array() ) {
 	// ENDLOOP
 	bunchy_reset_template_part_data();
 	wp_reset_postdata();
+}
+
+function bc_02_render_post_list() {
+	
 }

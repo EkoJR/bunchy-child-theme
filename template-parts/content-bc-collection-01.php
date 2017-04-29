@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $show_snax_bar = false;
 $show_snax_tab = true;
 $show_subtitle = true;
-$bc_01_total = 2;
+$bc_01_total = 2;// articles/posts
+$content_length = 225;
 
 
 
@@ -67,7 +68,7 @@ $snax_post_types = snax_get_post_supported_post_types();
 
 $bc_query_args = array(
 	//'post_type' => $snax_post_types,
-	//'category_name' => $wp_query->query['category_name'],
+	'category_name' => $wp_query->query['category_name'],
 	/*'tax_query' => array(
 		array(
 			'taxonomy' => 'category',
@@ -108,8 +109,8 @@ $bc_post_id = $bc_query->post->ID;
 
 <?php if ( $bc_query->have_posts() ) : ?>
 	<?php while ( $bc_query->have_posts() ) : $bc_query->the_post(); ?>
-		<article id="post-<?php echo $bc_query->post->ID; ?>" <?php post_class( 'entry-tpl-classic bc-01-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
-			<div class="respon_row respon_group snax">
+		<article id="post-<?php echo $bc_query->post->ID; ?>" <?php post_class( 'entry-tpl-index-stickies bc-01-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
+			<div class="respon_row respon_group snax bc-01-row">
 				<div class="respon_col span_2_of_5">
 					<div class="bc-01-thumb-header">
 						<header class="entry-header bc-01-header">
@@ -219,9 +220,22 @@ $bc_post_id = $bc_query->post->ID;
 						<?php if ( $bunchy_elements['summary'] ) : ?>
 							<div class="entry-summary">
 								<?php 
-								the_excerpt(); 
+								$html_excerpt = get_the_excerpt( $bc_query->post );
+								$html_excerpt = preg_replace(" ([.*?])",'',$html_excerpt);
+								$encoding = mb_internal_encoding();
+								$html_excerpt = mb_substr( strip_tags( strip_shortcodes( $html_excerpt ) ),
+														 0,
+														 $content_length,
+														 $encoding);
+								$html_excerpt = substr( $html_excerpt, 0, strripos( $html_excerpt, " " ) );
+								//the_excerpt(); 
 								// the_content();
 								?>
+								<p>
+									<?php echo $html_excerpt; ?>
+									<a class="g1-link g1-link-more" href="<?php the_permalink() ?>">More</a>
+								</p>
+								
 							</div>
 						<?php endif; ?>
 					</div>
@@ -232,12 +246,12 @@ $bc_post_id = $bc_query->post->ID;
 					$temp_query = $wp_query;
 					?>
 					<!-- VOTE GRID -->
-					<div class="respon_row respon_group bc-01-items">
+					<div class="respon_row respon_group snax-items bc-01-row bc-01-items">
 						<div class="respon_col span_1_of_2 bc-01-items-left">
-							<?php echo bc_render_snax_items( $bc_query->post->ID, $args = array() ); ?>
+							<?php echo bc_01_render_snax_items( $bc_query->post->ID, $args = array() ); ?>
 						</div>
 						<div class="respon_col span_1_of_2 bc-01-items-right">
-							<?php echo bc_render_snax_items( $bc_query->post->ID, $args = array( 'offset' => 5 ) ); ?>
+							<?php echo bc_01_render_snax_items( $bc_query->post->ID, $args = array( 'offset' => 5 ) ); ?>
 						</div>
 					</div>
 					<?php $wp_query = $temp_query; ?>
