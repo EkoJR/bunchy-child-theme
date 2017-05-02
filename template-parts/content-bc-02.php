@@ -10,90 +10,79 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $bc_02_total = 3;
 
+$bunchy_template_data = bunchy_get_template_part_data();
+$bunchy_elements   = $bunchy_template_data['elements'];
 
-
-
-
-
-global $wp_query;
-$temp_query = $wp_query;
-$snax_post_types = snax_get_post_supported_post_types();
-
-
-$bc_query_args = array(
-	//'post_type' => $snax_post_types,
-	'category_name' => $wp_query->query['category_name'],
-	/*'tax_query' => array(
-		array(
-			'taxonomy' => 'category',
-			'field' => 'slug',
-			'terms' => array( 'feature' ),
-			'include_children' => true,
-		),
-	),*/
-	'meta_query'     => array(
-		array(
-			
-			//'key' => '_snax_post_submission',
-			//'key' => '_snax_post_submission_start_date',
-			//'key' => '_snax_post_submission_end_date',
-			'key' => '_snax_post_voting',
-			//'key' => '_snax_post_voting_start_date',
-			//'key' => '_snax_post_voting_end_date',
-			//'key' => '_snax_post_items_per_page',
-
-			//'key'     => '_snax_format',
-			'compare' => 'EXISTS',
-		),
-	),
-	'posts_per_page' => $bc_02_total,
-	//'posts_per_archive_page' => $bc_01_total,
-	'ignore_sticky_posts' => true,
-	'order' => 'DESC',
-	'order_by' => 'date',
-	
-);
-
-$bc_query_args = wp_parse_args( $bc_query_args, $wp_query->query );
-
-$bc_query = new WP_Query( $bc_query_args );
-//$bc_post_id = $bc_query->post->ID;
-
+$category_permalink = get_category_link( $cat );
 $i_post = 0;
 // TODO - Check if there are 3 category children, or fill in with random.
 ?>
 <?php  ?>
-<?php if ( $bc_query->have_posts() ) : $bc_query->the_post();?>
-	<header class="bc-tax-02-header">
-		<div class="bc-02-header-thumb">
-			<?php the_post_thumbnail( 'large' ) ?>
-		</div>
-		<h2 class="bc-02-header-title">Test Header</h2>
-	</header>
-	<div class="bc-tax-02-post-0<?php echo $i_post; ?>">
-		<article id="post-<?php $bc_query->post->ID; ?>" <?php post_class( 'bc-02-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
-			<div class="bc-02-thumb">
-				<?php the_post_thumbnail( 'thumbnail' ) ?>
-			</div>
-			<div class="bc-02-content">
-				<?php // FIXME echo snax_capture_item_position( array('prefix' => '', 'suffix' => '' ) ); ?>
-				<?php the_title('<h3 class="entry-title g1-delta bc-02-title" itemprop="headline">', '</h3>'); ?>
-				<?php the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' ); ?>
 
-			</div>
-		</article>
-	</div>
+<?php if ( have_posts() ) : the_post();?>
+	<h2 class="bc-02-tax-head"><a href="<?php echo $category_permalink;?>"><?php echo ucwords( $category_name );?></a></h2>
+	<header class="bc-02-tax-header">
+		<?php if ( $show_snax_tab && bunchy_can_use_plugin( 'snax/snax.php' ) ) : ?>
+			<?php if ( snax_is_format( 'list' ) ) : ?>
+				<a class="entry-badge entry-badge-open-list bc-01-badge" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Open list', 'bunchy' ); ?></a>
+			<?php endif; ?>
+		<?php endif; ?>
+		<div class="bc-02-header-thumb">
+			<?php 
+			if ( $bunchy_elements['featured_media'] ) {
+				the_post_thumbnail( 'large' );
+			}
+			?>
+		</div>
+		<?php 
+		if ( $bunchy_elements['title'] ) {
+			the_title('<h3 class="entry-title g1-delta bc-02-title-header" itemprop="headline"><a href="' . the_permalink() . '">', '</a></h3>');
+		}
+		if ( $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) {
+			the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' );
+		}
+		?>
+	</header>
 	<?php $i_post++; ?>
-	<?php while ( $bc_query->have_posts() ) : $bc_query->the_post(); ?>
-		<div class="bc-tax-02-post-0<?php echo $i_post; ?>">
-			<article id="post-<?php $bc_query->post->ID; ?>" <?php post_class( 'bc-02-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
+	<?php 
+	while ( have_posts() ) : the_post(); 
+	?>
+		<div class="bc-02-tax-post-list">
+			<article id="post-<?php the_ID();?>" <?php post_class( 'bc-02-post' ); ?> itemscope="" itemtype="<?php echo esc_attr( bunchy_get_entry_microdata_itemtype() ); ?>">
 				<div class="bc-02-thumb">
 					<?php the_post_thumbnail( 'thumbnail' ) ?>
 				</div>
 				<div class="bc-02-content">
 					<?php // FIXME echo snax_capture_item_position( array('prefix' => '', 'suffix' => '' ) ); ?>
-					<?php the_title('<h3 class="entry-title g1-delta bc-02-title" itemprop="headline">', '</h3>'); ?>
-					<?php the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' ); ?>
+					<?php 
+					if ( $bunchy_elements['title'] ) {
+						echo '<a href="' . the_permalink() . '">';
+						the_title('<h3 class="entry-title g1-delta bc-02-title" itemprop="headline">', '</h3>');
+						echo '</a>';
+					}
+					?>
+					<?php 
+					if ( $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) {
+						the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' );
+					}
+					?>
+					<div class="bc-02-details">
+						<?php
+						bunchy_render_entry_stats( array(
+							'class'         => 'bs-02-counts',
+							'share_count'   => $bunchy_elements['shares'],
+							'view_count'    => $bunchy_elements['views'],
+							'comment_count' => $bunchy_elements['comments_link'],
+
+							//'class'         => '',
+							//'before'        => '<p class="%s">',
+							//'after'         => '</p>',
+							//'share_count'   => true,
+							//'view_count'    => true,
+							//'comment_count' => true,
+						) );
+						?>
+					</div>
 				</div>
 			</article>
 		</div>
@@ -103,7 +92,7 @@ $i_post = 0;
 	
 	
 <?php 
-$wp_query = $temp_query;
-bunchy_reset_template_part_data();
-wp_reset_postdata();
+//$wp_query = $temp_query;
+//bunchy_reset_template_part_data();
+//wp_reset_postdata();
 ?>

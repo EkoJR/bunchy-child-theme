@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $show_snax_bar = false;
 $show_snax_tab = true;
 $show_subtitle = true;
-$bc_01_total = 2;// articles/posts
-$content_length = 225;
+$bc_01_total = 1;// articles/posts
+$content_length = 170;
 
 
 

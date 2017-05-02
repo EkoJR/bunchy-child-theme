@@ -50,11 +50,11 @@ Template: bunchy
 	margin: 0% 0% 1% 2%;
 }
 
-.respon_col:first-child {
+div.respon_col:first-of-type {
 	margin-left: 0;
 }
 
-.respon_col-center:first-child {
+.respon_col-center:first-of-type {
 	margin-left: 0;
 }
 
@@ -73,11 +73,13 @@ Template: bunchy
     zoom:1;
 }
 
+.span_1_of_1 { width: 100%; }
+
 /*
  * GRID OF TWO
  */
 .span_2_of_2 { width: 100%; }
-.span_1_of_2 { width: 48%; }
+.span_1_of_2 { width: 49%; }
 
 @media only screen and (max-width: 768px) {
     .respon_col {
@@ -129,6 +131,18 @@ Template: bunchy
 @media only screen and (max-width: 600px) {
     .respon_col {  margin: 0% 1% 1% 0%; }
     .span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+}
+
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
+
+/*
+ * OVERWRITES
+ */
+
+.snax-post-container > .snax-voting-container {
+    visibility: hidden;
 }
 
 /*************************************************************************/
@@ -293,6 +307,7 @@ Template: bunchy
 
 .bc-01 {
     position: relative;
+    margin-bottom: 64px;
 }
 
 .bc-01-post {
@@ -437,21 +452,38 @@ Template: bunchy
 /*************************************************************************/
 
 .bc-02 {
-    width: 100%;
-}
-
-.bc-02-row {
     
 }
 
-.bc-tax-02-header {
+.bc-02-row {
+    display: inline-table;
+    height: 100%;
+    width: 96%;
+    margin-bottom: 46px;
+    padding: 1% 2%;
+    background: rgb(144, 144, 144);
+}
+.bc-02 > div > div.respon_col {
+    height: 100%;
+    background: rgb(242, 242, 242);;
+}
+
+.bc-02-tax-head {
+    padding: 1%;
+    background: rgb(198, 198, 198);
+}
+
+.bc-02-tax-header {
     position: relative
+}
+
+.bc-02-tax-post-list {
+    margin: 0% 1%
 }
 
 .bc-02-header-thumb {
     height: 161px;
     width: 100%;
-    
 }
 .bc-02-header-thumb img {
     width: 100%;
@@ -479,6 +511,7 @@ Template: bunchy
     float: left;
     width: 25%;
     height: 100%;
+    border: 1px solid #a7a7a7;
 }
 
 .bc-02-thumb img {
@@ -488,6 +521,18 @@ Template: bunchy
 /*    margin: 18% 0%;*/
     object-fit: cover;
     object-position: center;
+}
+
+.bc-02-title-header {
+    margin-bottom: 0% !important;
+    padding: 1% 2%;
+    max-height: 45px;
+    width: 90%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 4%;
+    left: 3%;
+    background: rgba(242, 242, 242, 0.96);
 }
 
 .bc-02-content {
