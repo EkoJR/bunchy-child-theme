@@ -12,13 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // TODO Change Vote/Item template.
 ?>
-<article <?php post_class( 'snax-item entry-tpl-index entry-tpl-index-stickies' ); ?>>
+<article <?php post_class( 'entry-tpl-index entry-tpl-index-stickies' ); ?>>
 	<div class="snax-item-actions entry-actions">
-		<?php snax_mod_render_voting_box(); ?>
+		<?php snax_mod_render_voting_box_weeks(); ?>
 		<?php //snax_render_item_share(); ?>
 		<?php //snax_render_item_action_links(); ?>
 	</div>
-	<div class="entry-box">
+	
 
 		<!-- <header class="snax-item-header">
 			<?php //snax_render_item_title(); ?>
@@ -26,14 +26,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</header> -->
 
 		<?php 
-		snax_get_template_part( 'items/media' ); 
+		snax_get_template_part( 'items/post_media' ); 
 		?>
 
 		<!-- <p class="snax-item-meta">
 			<?php //snax_render_item_author(); ?>
 			<?php //snax_render_item_date(); ?>
 		</p> -->
-	</div><!-- .snax-item-box -->
+
 
 	
 </article>
