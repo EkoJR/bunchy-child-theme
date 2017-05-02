@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</header> -->
 
 		<?php 
-		snax_get_template_part( 'items/post_media' ); 
+		snax_get_template_part( 'items/post-media' ); 
 		?>
 
 		<!-- <p class="snax-item-meta">

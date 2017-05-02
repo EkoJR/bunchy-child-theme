@@ -3,6 +3,9 @@
 if ( !defined( 'ABSPATH' ) )
 	die ( 'No direct script access allowed' );
 
+add_action( 'admin_head', 'bc_showhiddencustomfields' );
+
+
 /**
 * Child Theme Setup
 * 
@@ -13,6 +16,24 @@ function bunchy_child_setup() {
 	// NONE - However, Snax-Mod handles some of the database modifications.
 }
 
+/*
+ * DEBUGGING TOOL TO SHOW HIDDEN META KEYS
+ */
+/*
+function bc_showhiddencustomfields() {
+	echo "<style type='text/css'>#postcustom .hidden { display: table-row; }</style>";
+}
+*/
+
+/*
+ * PREVENTS THEME FROM LOADING TWICE
+ */
+add_action( 'wp_enqueue_scripts', 'enqueue_parent_theme_style' );
+function enqueue_parent_theme_style() {
+    wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
+}
+
+add_action( 'wp_footer', 'add_my_footer_textLink' );
 function add_my_footer_textLink() {
 	?>
 	<div style="text-align: center;">
@@ -20,7 +41,6 @@ function add_my_footer_textLink() {
 	</div>  
 	<?php
 }
-add_action( 'wp_footer', 'add_my_footer_textLink' );
 
 function bc_01_render_snax_items( $post_id, $format = array() ) {
 	$default_format = array(
@@ -85,10 +105,10 @@ function bc_01_render_snax_items( $post_id, $format = array() ) {
 		$item_count++;
 	}
 	// ENDLOOP
-	bunchy_reset_template_part_data();
+	//bunchy_reset_template_part_data();
 	wp_reset_postdata();
 }
 
-function bc_02_render_post_list() {
+function bc_fp_02_query_snax_items() {
 	
 }

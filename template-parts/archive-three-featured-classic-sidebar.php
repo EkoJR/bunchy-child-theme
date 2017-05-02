@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $bunchy_template_data = bunchy_get_template_part_data();
 //$bunchy_elements   = $bunchy_template_data['elements'];
-
 ?>
 
 <?php
@@ -34,10 +33,10 @@ endif;
 				<!-- DO STUFF -->
 				<?php if ( ! $paged ) : ?>
 					<div class="bc-01">
-						<?php get_template_part( 'template-parts/content', 'bc-collection-01' ); ?>
+						<?php get_template_part( 'template-parts/content-bc-tax', 'collection-01' ); ?>
 					</div>
 					<div class="bc-02">
-						<?php get_template_part( 'template-parts/content', 'bc-collection-02' ); ?>
+						<?php get_template_part( 'template-parts/content-bc-tax', 'collection-02' ); ?>
 					</div>
 				<?php endif; ?>
 				<div class="g1-collection g1-collection-columns-3">

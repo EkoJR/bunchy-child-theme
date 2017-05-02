@@ -551,7 +551,246 @@ div.respon_col:first-of-type {
     overflow: hidden;
 }
 
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
+
+/*
+ * FRONT PAGE TEMPLATE
+ */
+
+.bc-frontpage-01 {
+    height: 400px;
+}
+
+.bc-fp-01 {
+    width: 100%;
+    height: 100%;
+}
+
+.bc-fp-01-l-top {
+    height: 50%;
+}
+
+.bc-fp-01-l-bottom {
+    height: 50%;
+}
+
+.bc-fp-01-right {
+    width: 25%;
+}
+
+.bc-fp-01-post-0 {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 25%;
+}
+
+.bc-fp-01-post-1 {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 25%;
+}
+
+.bc-fp-01-post-2 {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+.bc-fp-01-post {
+    
+}
+
+.bc-fp-01-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bc-fp-01-post header {
+    position: absolute;
+    /*height: 100%;*/
+    width: 90%;
+    left: 2%;
+    bottom: 1%;
+    padding: 1% 2%;
+    background: rgba(242, 242, 242, 0.9);
+}
+
+.bc-fp-01-title {
+    font-size: 100%;
+    margin-bottom: 1%;
+}
 
 
 
 
+
+
+
+.bc-frontpage-02-head {
+    background: #DDDDDD;
+}
+
+.bc-frontpage-02-head > div > h2 {
+    margin: 9px 0px 0px 18px;
+}
+
+.bc-frontpage-02 {
+    display: flex;
+    overflow: visible;
+    min-height: 500px;
+    margin-bottom: 24px;
+    padding: 1% 1%;
+    background: #f2f2f2;
+}
+
+.bc-frontpage-02 > div {
+    background: #ffffff;
+}
+
+
+.bc-fp-02-article {
+    height: 100%;
+    padding: 1%;
+    border: 1px solid #bbb;
+}
+
+.bc-fp-02-post {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bc-fp-02-thumb {
+    float: left;
+    width: 38%;
+    height: 150px;
+    margin: 0% 2% 1% 0%;
+}
+
+.bc-fp-02-thumb img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bc-fp-02-header {
+    
+}
+
+.bc-fp-02-title {
+    font-size: 135%;
+    margin-bottom: 9px;
+}
+
+.bc-fp-02-header header {
+    
+}
+
+.bc-fp-02-header header > div {
+    
+}
+
+.bc-fp-02-container {
+    /*min-height: 230px;*/
+    /*margin-bottom: 18px;*/
+}
+
+.bc-fp-02-badge {
+    
+}
+
+.bc-fp-02-details {
+    float: left;
+    width: 56%;
+    margin: 1% 2%;
+}
+
+.bc-fp-02-details p {
+    float: left;
+    clear: left;
+}
+
+.bs-fp-02-counts {
+    
+}
+
+.bs-fp-02-tax-terms {
+    
+}
+
+.bc-fp-02-content {
+    margin: 0%;
+}
+
+.bc-fp-02-snax-items {
+    background: #ececec;
+    margin: auto 1% 1% 1%;
+}
+
+.bc-fp-02-snax-items > div.snax > div:nth-child(even) {
+    background: #cecece;
+}
+
+.bc-fp-02-item {
+    height: 85px;
+    clear: left;
+}
+
+.bc-fp-02-item-vote-box {
+    float: left;
+    width: 20%;
+    height: 100%;
+    justify-content: center !important;
+}
+
+.bc-fp-02-item-vote-box > div.snax-voting > a {
+    margin: 0 18px;
+}
+
+.bc-fp-02-item-vote-box > div.snax-voting > div.snax-voting-score {
+    margin: 0 20px;
+}
+
+.bc-fp-02-item-thumb {
+    float: left;
+    width: 21%;
+    height: 81px;
+}
+
+.bc-fp-02-item-thumb img {
+    width: 100%;
+    height: 98%;
+    margin: 3% 0%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bc-fp-02-item-container {
+    float: left;
+    width: 59%;
+    height: 100%;
+}
+
+.bc-fp-02-item-container-inner {
+    width: 94%;
+    height: 94%;
+    margin: 3%;
+}
+
+.bc-fp-02-item-title {
+    margin-bottom: 3%;
+    max-height: 45px;
+    overflow: hidden;
+}
+
+.bc-fp-02-item-title > a {
+    display: flex;
+}

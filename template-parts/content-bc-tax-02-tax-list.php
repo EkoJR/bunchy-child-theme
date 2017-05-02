@@ -34,10 +34,12 @@ $i_post = 0;
 			}
 			?>
 		</div>
-		<?php 
-		if ( $bunchy_elements['title'] ) {
-			the_title('<h3 class="entry-title g1-delta bc-02-title-header" itemprop="headline"><a href="' . the_permalink() . '">', '</a></h3>');
-		}
+		<?php if ( $bunchy_elements['title'] ) : ?>
+			<a href="<?php the_permalink(); ?>">
+				<?php the_title('<h3 class="entry-title g1-delta bc-02-title-header" itemprop="headline">', '</h3>'); ?>
+			</a>
+		<?php endif; ?>
+		<?php
 		if ( $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) {
 			the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' );
 		}
@@ -54,13 +56,11 @@ $i_post = 0;
 				</div>
 				<div class="bc-02-content">
 					<?php // FIXME echo snax_capture_item_position( array('prefix' => '', 'suffix' => '' ) ); ?>
-					<?php 
-					if ( $bunchy_elements['title'] ) {
-						echo '<a href="' . the_permalink() . '">';
-						the_title('<h3 class="entry-title g1-delta bc-02-title" itemprop="headline">', '</h3>');
-						echo '</a>';
-					}
-					?>
+					<?php if ( $bunchy_elements['title'] ) : ?>
+						<a href="<?php the_permalink(); ?>">
+							<h3 class="entry-title g1-delta bc-02-title" itemprop="headline"><?php the_title(); ?></h3>
+						</a>
+					<?php endif; ?>
 					<?php 
 					if ( $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) {
 						the_subtitle( '<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd">', '</h4>' );
