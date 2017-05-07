@@ -142,7 +142,7 @@ $wp_query = new WP_Query( $bc_query_args );
 			$wp_query = new WP_Query( $bc_query_args );
 			?>
 			<div class="respon_col span_1_of_<?php echo $bc_02_max_columns; ?>">
-				<?php get_template_part( 'template-parts/content', 'bc-02' ); ?>
+				<?php get_template_part( 'template-parts/content-bc-tax', '02-tax-list' ); ?>
 			</div>
 		<?php endforeach; ?>
 	</div>
