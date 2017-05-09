@@ -61,7 +61,7 @@ $post_index = 0;
 	<?php if ( have_posts() ) : ?>
 		<div class="respon_row respon_group bc-frontpage-02-head">
 			<div class="respon_col span_1_of_1">
-				<h2><a href="<?php get_term_link( $term_obj ); ?>"><?php echo $term_obj->name; ?></a></h2>
+				<h2><a href="<?php echo get_term_link( $term_obj ); ?>"><?php echo $term_obj->name; ?></a></h2>
 			</div>
 		</div>
 		<?php while ( have_posts() ) : the_post(); ?>

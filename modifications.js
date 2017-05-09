@@ -34,12 +34,14 @@
             var itemId      = parseInt($link.attr('data-snax-item-id'), 10);
             var authorId    = parseInt($link.attr('data-snax-author-id'), 10);
             var postId      = parseInt($link.attr('data-snax-mod-wp-post-id'), 10);
+            var isType      = $.trim( $link.attr( 'data-snax-mod-is-type' ) );
 
             ctx.vote({
+                'isType':  isType,
                 'postId':   postId,
                 'itemId':   itemId,
                 'authorId': authorId,
-                'type':     voteType
+                'type':     voteType,
             }, nonce, $wrapper);
         });
 
@@ -108,6 +110,7 @@
             'data': {
                 'action':               'snax_vote_item',
                 'security':             nonce,
+                'snax_mod_is_type':     data.isType,
                 'snax_mod_wp_post_id':  data.postId,
                 'snax_item_id':         data.itemId,
                 'snax_author_id':       data.authorId,
