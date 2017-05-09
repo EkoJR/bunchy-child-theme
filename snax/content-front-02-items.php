@@ -71,7 +71,10 @@ $item_index = 0;
 		<?php while ( have_posts() ) : the_post(); ?>
 			<div class="snax-item bc-fp-02-item">
 				<div class="snax-item-actions bc-fp-02-item-vote-box">
-					<?php snax_mod_render_voting_box( $snax_item_id, $wp_post_id ) ?>
+					<?php
+					$snax_item_id = $wp_query->post->ID;
+					snax_mod_render_voting_box( $snax_item_id, $wp_post_id );
+					?>
 				</div>
 				<div class="bc-fp-02-item-thumb">
 					<?php the_post_thumbnail( 'thumbnail' ) ?>
