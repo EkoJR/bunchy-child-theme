@@ -3,9 +3,6 @@
 if ( !defined( 'ABSPATH' ) )
 	die ( 'No direct script access allowed' );
 
-add_action( 'admin_head', 'bc_showhiddencustomfields' );
-
-
 /**
 * Child Theme Setup
 * 
@@ -20,6 +17,7 @@ function bunchy_child_setup() {
  * DEBUGGING TOOL TO SHOW HIDDEN META KEYS
  */
 /*
+add_action( 'admin_head', 'bc_showhiddencustomfields' );
 function bc_showhiddencustomfields() {
 	echo "<style type='text/css'>#postcustom .hidden { display: table-row; }</style>";
 }
