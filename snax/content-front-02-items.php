@@ -99,7 +99,7 @@ $item_index = 0;
 		<?php endwhile; ?>
 	<?php endif; ?>
 	<?php while ( $item_index < $items_total ) : ?>
-		<div class="bc-fp-02-item">**EMPTY MESSAGE**</div>
+		<div class="bc-fp-02-item"></div>
 		<?php $item_index++; ?>
 	<?php endwhile; ?>
 </div>
