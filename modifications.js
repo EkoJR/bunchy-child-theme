@@ -119,16 +119,20 @@
             }
         });
 
-        xhr.done(function (res) {
-            if (res.status === 'success') {
+        xhr.done( function ( res ) {
+            if ( res.status === 'success' ) {
                 // Replace just box content to keep assigned to it events
-                $box.html($(res.args.html).html());
+                $box.html( $( res.args.html ).html() );
 
-                ctx.updateVoteState(data.itemId, data.type, $box);
+                ctx.updateVoteState( data.itemId, data.type, $box );
+                
+                alert( res.message );
+            } else {
+                alert( res.message );
             }
 
             locked = false;
-        });
+        } );
     };
     
     
