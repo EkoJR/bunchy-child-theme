@@ -234,7 +234,8 @@ div.respon_col:first-of-type {
     width: 50%;
     align-content: center;
     vertical-align: middle;
-    background: red;
+    text-align: center;
+    /*background: red;*/
 }
 
 .snax-mod-item-rank-position-last {
