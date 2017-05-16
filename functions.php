@@ -98,7 +98,7 @@ function bc_01_render_snax_items( $post_id, $format = array() ) {
 	}
 	while ( $item_count < 5 ) {
 		?>
-		<div class="bc-01-item">**EMPTY MESSAGE**</div>
+		<div class="bc-01-item"><!-- EMPTY MESSAGE --></div>
 		<?php
 		$item_count++;
 	}
