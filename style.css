@@ -16,6 +16,46 @@ Description: A child theme of bunchy
 Template: bunchy
 */
 
+/*************************************************************************/
+/* OVERWRITES ************************************************************/
+/*************************************************************************/
+
+
+.snax-post-container > .snax-voting-container {
+    visibility: hidden;
+}
+
+@media only screen and (min-width: 801px) {
+    .g1-indicator-gif {
+        width: 80px;
+        height: 80px;
+        margin-left: -40px;
+        margin-top: -40px;
+        border-width: 0;
+        font-size: 24px; 
+    } 
+}
+
+.g1-canvas-global {
+    z-index: 0;
+    left: -320px;
+    right: auto; 
+}
+
+@media only screen and (min-width: 1025px) {
+    .g1-header .g1-hamburger {
+        display: none;
+    }
+    .g1-header .g1-id {
+        float: left;
+        padding-right: 25px;
+    }
+    .g1-header .g1-primary-nav {
+        display: block; 
+        padding-top:10px; 
+    } 
+}
+
 /*******************************************************************************
  * RESPONSIVE GRID *************************************************************
  ******************************************************************************/
@@ -24,38 +64,38 @@ Template: bunchy
  * Responsive Rows
  */
 .respon_row {
-	clear: both;
-	overflow: hidden;
+    clear: both;
+    overflow: hidden;
 }
 
 /*
  * Responsive Columns
  */
 .respon_col {
-	display: block;
-	float: left;
-	margin: 0% 0% 1% 2%;
+    display: block;
+    float: left;
+    margin: 0% 0% 1% 2%;
 }
 
 .respon_col-center {
-	display: block;
+    display: block;
 
-	float: none;
-	margin: 0% 0% 1% 2%;
+    float: none;
+    margin: 0% 0% 1% 2%;
 }
 
 .respon_col-right {
-	display: block;
-	float: right;
-	margin: 0% 0% 1% 2%;
+    display: block;
+    float: right;
+    margin: 0% 0% 1% 2%;
 }
 
 div.respon_col:first-of-type {
-	margin-left: 0;
+    margin-left: 0;
 }
 
 .respon_col-center:first-of-type {
-	margin-left: 0;
+    margin-left: 0;
 }
 
 /*
@@ -132,22 +172,6 @@ div.respon_col:first-of-type {
     .respon_col {  margin: 0% 1% 1% 0%; }
     .span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
 }
-
-/*************************************************************************/
-/*************************************************************************/
-/*************************************************************************/
-
-/*
- * OVERWRITES
- */
-
-.snax-post-container > .snax-voting-container {
-    visibility: hidden;
-}
-
-/*************************************************************************/
-/*************************************************************************/
-/*************************************************************************/
 
 /*
  * SINGLE ITEM TEMPLATE
@@ -662,12 +686,10 @@ div.respon_col:first-of-type {
 
 .bc-fp-01-post header {
     position: absolute;
-    /*height: 100%;*/
-    width: 90%;
-    left: 2%;
-    bottom: 1%;
+    background: rgba( 242, 242, 242, 0.3 );
+    width: 99%;
+    bottom: 0%;
     padding: 1% 2%;
-    background: rgba(242, 242, 242, 0.3);
 }
 
 .bc-fp-01-title {
@@ -716,8 +738,7 @@ div.respon_col:first-of-type {
 
 .bc-fp-02-article {
     height: 100%;
-    padding: 1%;
-    border: 1px solid #bbb;
+    padding: 4% 4% ;
 }
 
 .bc-fp-02-post {
@@ -852,4 +873,26 @@ div.respon_col:first-of-type {
 
 .bc-fp-02-item-title > a {
     display: flex;
+}
+
+.snax-mod-item-rank-cf {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 12%;
+    padding: 3px;
+    background: rgba(280,280,280,0.8);
+    font-size: 2em;
+    color: #ff552e;
+    z-index: 0;
+    /*box-sizing: border-box;*/
+    /*border-width: 1px;*/
+    /*border-style: solid;*/
+    /*border-color: white;*/
+    /*border-color: rgba(92, 92, 92, 0.6);*/
+}
+
+.snax .snax-item-actions .snax-voting {
+    margin-top: 15px;
+    margin-right: auto;
 }

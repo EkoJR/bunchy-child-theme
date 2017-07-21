@@ -23,7 +23,7 @@ snax_mod_get_items_query( $args );
 						<h3 class="bc-fp-02-title"><?php the_title(); ?></h3>
 					</a>
 				<?php endif; ?>
-				<?php if ( $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) : ?>
+				<?php if ( isset( $show_subtitle ) && $show_subtitle && bunchy_can_use_plugin( 'wp-subtitle/wp-subtitle.php' ) ) : ?>
 					<div>
 						<h4 class="entry-subtitle g1-epsilon g1-epsilon-2nd"><?php the_subtitle(); ?></h4>
 					</div>
@@ -34,7 +34,7 @@ snax_mod_get_items_query( $args );
 			<?php if ( $bunchy_home_settings['elements']['featured_media'] ) : ?>
 				<div class="bc-fp-02-thumb">
 					<?php the_post_thumbnail( 'medium' ); ?>
-					<?php if ( $show_snax_tab && bunchy_can_use_plugin( 'snax/snax.php' ) ) : ?>
+					<?php if ( isset( $show_snax_tab ) && $show_snax_tab && bunchy_can_use_plugin( 'snax/snax.php' ) ) : ?>
 						<?php if ( snax_is_format( 'list' ) ) : ?>
 							<a class="entry-badge entry-badge-open-list bc-fp-02-badge" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Open list', 'bunchy' ); ?></a>
 						<?php endif; ?>
@@ -78,9 +78,7 @@ snax_mod_get_items_query( $args );
 						'comment_count' => $bunchy_home_settings['elements']['comments_link'],
 					) );
 					?>
-
 				</div>
-
 			<?php if ( $bunchy_home_settings['elements']['summary'] ) : ?>
 				<?php 
 				$html_excerpt = get_the_excerpt( $wp_query->post );
@@ -92,12 +90,9 @@ snax_mod_get_items_query( $args );
 										   $encoding);
 				$html_excerpt = substr( $html_excerpt, 0, strripos( $html_excerpt, " " ) );
 				?>
-				<p class="bc-fp-02-content"><?php echo $html_excerpt; ?><a class="g1-link g1-link-more" href="<?php the_permalink() ?>">More</a></p>
+				<p class="bc-fp-02-content"><?php echo $html_excerpt; ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="bc-fp-02-snax-items">
-			<?php get_template_part( 'snax/content-front-02', 'items' ); ?>
-		</div>
+		<?php get_template_part( 'snax/content-front-02', 'items' ); ?>
 	</article>
-	
 </div>

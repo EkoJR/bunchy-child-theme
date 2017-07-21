@@ -11,18 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 /* ******************** */
 /* ***** SETTINGS ***** */
 $bc_02_total = 3;
-$bc_02_max_columns = 3; // Set from 1-5
+$bc_02_max_columns = 4; // Set from 1-5
 /* ******************** */
 
 // TODO - Add query function.
-$bunchy_template_data = bunchy_get_template_part_data();
-$bunchy_elements   = $bunchy_template_data['elements'];
-
-
-
+$bunchy_template_data  = bunchy_get_template_part_data();
+$bunchy_elements       = $bunchy_template_data['elements'];
 $temp_query = $wp_query;
 //$snax_post_types = snax_get_post_supported_post_types();
-
 
 $bc_query_args = array(
 	//'post_type' => $snax_post_types,
@@ -37,9 +33,9 @@ $bc_query_args = array(
 			'include_children' => true,
 		),
 	),*/
-	'meta_query'     => array(
+	'meta_query' => array(
 		array(
-			
+
 			//'key' => '_snax_post_submission',
 			//'key' => '_snax_post_submission_start_date',
 			//'key' => '_snax_post_submission_end_date',
@@ -57,21 +53,13 @@ $bc_query_args = array(
 	'ignore_sticky_posts' => true,
 	'order' => 'DESC',
 	'order_by' => 'date',
-	
+
 );
-
-
-
-
-
-
 
 $term = get_term( $cat );
 $cat_children = get_term_children( $cat, $term->taxonomy );
 
 $cat_num_of_posts = array();
-
-
 
 /////////////////////////////////////
 
@@ -82,24 +70,18 @@ foreach ( $cat_children as $key => $value ) {
 	if ( 0 < $cat_count ) {
 		$cat_num_of_posts[ $cat_term->term_id ] = $cat_count;
 	}
-	
+
 }
 
-uksort($cat_num_of_posts, function($x, $y) use ($cat_num_of_posts)
-{
-   if( $cat_num_of_posts[$x] === $cat_num_of_posts[$y] )
-   {
-      return $x < $y ? -1 : $x != $y;
-   }
-   return $cat_num_of_posts[$y] - $cat_num_of_posts[$x];
+uksort( $cat_num_of_posts, function ( $x, $y ) use ( $cat_num_of_posts ) {
+	if ( $cat_num_of_posts[ $x ] === $cat_num_of_posts[ $y ] ) {
+		return $x < $y ? -1 : $x != $y;
+	}
+	return $cat_num_of_posts[$y] - $cat_num_of_posts[$x];
 });
 
 //$cat_children = array_flip( $cat_num_of_posts );
 /////////////////////////////////////////////
-
-
-
-
 
 $snax_post_types = snax_get_post_supported_post_types();
 
@@ -115,10 +97,10 @@ $bc_query_args = array(
 			'include_children' => true,
 		),
 	),*/
-	
+
 	'posts_per_page' => $bc_02_total,
 	//'posts_per_archive_page' => $bc_01_total,
-	
+
 );
 
 //$bc_query_args = wp_parse_args( $bc_query_args, $wp_query->query );
@@ -129,12 +111,11 @@ $wp_query = new WP_Query( $bc_query_args );
  * OR Change to a function to set query and header message.
  */
 ?>
-<?php  ?>
-<?php if ( !empty( $cat_num_of_posts ) ) : ?>
+<?php if ( ! empty( $cat_num_of_posts ) ) : ?>
 	<div class="respon_row respon_group snax bc-02-row">
-		<h1 style="display: table-row; height: 45px;">More Pages to Vote</h1>
-		<?php foreach( $cat_num_of_posts as $key => $value ) : ?>
-			<?php 
+		<h1 style="display: table-row; height: 85px;">More Pages to Vote</h1>
+		<?php foreach ( $cat_num_of_posts as $key => $value ) : ?>
+			<?php
 			if ( count( $cat_num_of_posts ) < $bc_02_max_columns ) {
 				$bc_02_max_columns = count( $cat_num_of_posts );
 			}
@@ -149,7 +130,6 @@ $wp_query = new WP_Query( $bc_query_args );
 <?php endif; ?>
 <?php
 
-$wp_query = $temp_query; 
+$wp_query = $temp_query;
 bunchy_reset_template_part_data();
 wp_reset_postdata();
-
