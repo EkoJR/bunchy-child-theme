@@ -103,7 +103,7 @@ $bc_query_args = array(
 $bc_query_args = wp_parse_args( $bc_query_args, $wp_query->query );
 
 $bc_query = new WP_Query( $bc_query_args );
-$bc_post_id = $bc_query->post->ID;
+$bc_post_id = isset( $bc_query->post->ID ) ? $bc_query->post->ID : FALSE;
 
 ?>
 
